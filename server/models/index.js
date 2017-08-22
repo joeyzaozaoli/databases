@@ -17,16 +17,5 @@ module.exports = {
   }
 };
 
-// if user exists
-  // get user's id
-// if room exists
-  // get room's id
-// insert message into messages table
-
-// db.query('SELECT id FROM users WHERE xxx;', function(error, data) {
-//   if (!error && data.length > 0) {
-//     data[0].id
-//   }
-// });
 
 
