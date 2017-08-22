@@ -15,7 +15,14 @@ module.exports = {
       });
     },
 
-    post: function (req, res) {} // a function which handles posting a message to the database
+    post: function (req, res) {
+      console.log(req.body);
+    },
+
+    options: function(req, res) {
+      res.writeHead(200, headers);
+      res.end();
+    }
   },
 
   users: {

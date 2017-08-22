@@ -142,7 +142,7 @@ app.send = function(msgObj) {
 
 // set function to CRUD room model
 app.handleCreateRoom = function() {
-  var newRoom = prompt("Please name the new room:");
+  var newRoom = prompt('Please name the new room:');
   // room model CRUD -> render room view
   app.addRoomToList(newRoom, app.displayRooms);
 };
