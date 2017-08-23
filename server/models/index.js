@@ -35,9 +35,17 @@ module.exports = {
   },
 
   users: {
-    // Ditto as above.
-    get: function () {},
-    post: function () {}
+    get: function (cb) {
+      db.query('SELECT username FROM users;', function(error, data) {
+        if (!error) { cb(data); }
+      });
+    },
+
+    post: function (username, cb) {
+      getIdFromTable('users', 'username', username, function() {
+        cb();
+      });
+    }
   }
 };
 

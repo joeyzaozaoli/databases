@@ -30,9 +30,21 @@ module.exports = {
   },
 
   users: {
-    // Ditto as above
-    get: function (req, res) {},
-    post: function (req, res) {}
+    get: function (req, res) {
+      models.users.get(function(data) {
+        headers['Content-Type'] = 'application/json';
+        res.writeHead(200, headers);
+        res.end(JSON.stringify({users: data}));
+      });
+    },
+
+    post: function (req, res) {
+      var userObj = req.body;
+      models.users.post(userObj.username, function() {
+        res.writeHead(201, headers);
+        res.end(JSON.stringify(null));
+      });
+    }
   }
 };
 
