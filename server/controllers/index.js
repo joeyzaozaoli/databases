@@ -16,7 +16,11 @@ module.exports = {
     },
 
     post: function (req, res) {
-      console.log(req.body);
+      var msgObj = req.body;
+      models.messages.post(msgObj.username, msgObj.roomname, msgObj.text, function() {
+        res.writeHead(201, headers);
+        res.end(JSON.stringify(null));
+      });
     },
 
     options: function(req, res) {
