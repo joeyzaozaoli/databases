@@ -10,9 +10,16 @@ module.exports = {
 
     post: function (req, res) {
       var msgObj = req.body;
-      // models.messages.post(msgObj.username, msgObj.roomname, msgObj.text, function() {
-      //   res.sendStatus(201);
-      // });
+      db.User.findOrCreate({where: {username: msgObj.username}})
+        .then(function(users) {
+          db.Room.findOrCreate({where: {roomname: msgObj.roomname}})
+            .then(function(rooms) {
+              db.Message.create({text: msgObj.text, userId: users[0].id, roomId: rooms[0].id})
+                .then(function() {
+                  res.sendStatus(201);
+                });
+            });
+        });
     }
   },
 
@@ -25,9 +32,10 @@ module.exports = {
 
     post: function (req, res) {
       var userObj = req.body;
-      // models.users.post(userObj.username, function() {
-      //   res.sendStatus(201);
-      // });
+      db.User.findOrCreate({where: {username: msgObj.username}})
+        .then(function() {
+          res.sendStatus(201);
+        });
     }
   }
 };
