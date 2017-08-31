@@ -27,4 +27,4 @@ User.sync();
 Room.sync();
 Message.sync();
 
-module.exports = {User: User, Room: Room, Message: Message};
+module.exports = {User: User, Room: Room, Message: Message, Sequelize: Sequelize};

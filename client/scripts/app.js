@@ -8,7 +8,7 @@ app.init = function() {
   app.fetch();
 
   // message model CRUD -> render message view
-  // setInterval(app.fetch, 10000);
+  setInterval(app.fetch, 10000);
   $('#send').submit(app.fetch);
   // user event: change room -> render message view
   $('#roomSelect').change(app.fetch);

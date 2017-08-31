@@ -3,9 +3,21 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (req, res) {
-      // models.messages.get(function(data) {
-      //   res.json({results: data});
-      // });
+      db.Message.findAll({
+        attributes: [
+          'text',
+          'createdAt',
+          [db.Sequelize.col('username'), 'username'],
+          [db.Sequelize.col('roomname'), 'roomname']
+        ],
+        include: [
+          {model: db.User, attributes: ['username']},
+          {model: db.Room, attributes: ['roomname']}
+        ]
+      })
+        .then(function(messages) {
+          res.json({results: messages});
+        });
     },
 
     post: function (req, res) {
