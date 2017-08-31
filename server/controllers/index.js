@@ -37,9 +37,10 @@ module.exports = {
 
   users: {
     get: function (req, res) {
-      // models.users.get(function(data) {
-      //   res.json({results: data});
-      // });
+      db.User.findAll()
+        .then(function(users) {
+          res.json({results: users});
+        });
     },
 
     post: function (req, res) {
